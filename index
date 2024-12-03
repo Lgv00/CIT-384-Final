@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What to Eat?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to "What to Eat?"</h1>
+        <p>Feeling hungry? Let us help you choose something to eat based on your cravings!</p>
+        <button onclick="showCravingFilters()">Start</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
