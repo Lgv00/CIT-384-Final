@@ -13,11 +13,20 @@ body {
 
 .container {
     text-align: center;
+    margin-top: 50px;
+
 }
 
-.container {
-    text-align: center;
-    margin-top: 50px;
+.welcome-container {
+    background-color: #FFF;                    /* White background */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* White border with 50% opacity */
+    padding: 20px;                             /* Padding around the content */
+    border-radius: 12px;                       /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Optional: Add a subtle shadow */
+    text-align: center;                        /* Center the content */
+    width: 80%;                                /* Adjust width */
+    max-width: 600px;                          /* Limit the max width */
+    margin: 0 auto;                            /* Center the container horizontally */
 }
 
 .cravings {
