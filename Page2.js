@@ -1,5 +1,5 @@
 <div class="cravings">
-    <h2>What are you craving today?</h2>
+    <h2>Are you craving anything specific?</h2>
     <div>
         <label>
             <input type="checkbox" id="sweet"> Sweet
