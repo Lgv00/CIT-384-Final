@@ -31,11 +31,7 @@ button {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-
-    /* Make the button round */
-    border-radius: 50%;  /* Round button */
-    width: 100px;        /* Width */
-    height: 100px;       /* Height */
+    border-radius: 12px;
 }
 
 button:hover {
