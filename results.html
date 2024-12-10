@@ -38,16 +38,26 @@
         // Function to display the food suggestions on the page
         function displayResults() {
             const resultsString = getQueryParameter('foodSuggestions');
-            if (resultsString) {
-                const results = decodeURIComponent(resultsString).split(',');
+            const foodResultsContainer = document.getElementById('food-results');
 
-                const foodResultsContainer = document.getElementById('food-results');
-                foodResultsContainer.innerHTML = `
-                    <h3>Here are your food suggestions:</h3>
-                    <ul>${results.map(item => `<li>${item}</li>`).join('')}</ul>
-                `;
+            if (resultsString) {
+                try {
+                    const results = JSON.parse(decodeURIComponent(resultsString));
+
+                    if (Array.isArray(results) && results.length > 0) {
+                        foodResultsContainer.innerHTML = `
+                            <h3>Here are your food suggestions:</h3>
+                            <ul>${results.map(item => `<li>${item}</li>`).join('')}</ul>
+                        `;
+                    } else {
+                        foodResultsContainer.innerHTML = '<p>No valid suggestions found.</p>';
+                    }
+                } catch (error) {
+                    console.error('Error parsing food suggestions:', error);
+                    foodResultsContainer.innerHTML = '<p>Error displaying suggestions. Please try again.</p>';
+                }
             } else {
-                document.getElementById('food-results').innerHTML = '<p>No suggestions found.</p>';
+                foodResultsContainer.innerHTML = '<p>No suggestions found.</p>';
             }
         }
 
