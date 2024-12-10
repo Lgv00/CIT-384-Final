@@ -14,7 +14,6 @@ body {
 .container {
     text-align: center;
     margin-top: 50px;
-
 }
 
 .welcome-container {
@@ -59,11 +58,19 @@ label {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+/* Ensuring that the welcome-container doesn't overlap with other areas */
+.welcome-container + .welcome-container {
+    background-color: transparent; /* Make the second container background transparent */
+    border: none;                  /* Remove the border */
+    box-shadow: none;               /* Remove any shadow */
 }
 
-li {
-    margin: 5px 0;
+/* If there's any unwanted box around the "What are you craving today?" section, make sure to hide it */
+#cravings-section {
+    display: none;
+}
+
+/* General cleanup for any empty boxes */
+div:empty {
+    display: none;
 }
