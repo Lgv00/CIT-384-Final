@@ -1,3 +1,10 @@
+// Define the displaySuggestions function first
+function displaySuggestions(results) {
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = `<h3>Food Suggestions:</h3><ul>${results.map(item => `<li>${item}</li>`).join('')}</ul>`;
+}
+
+// Now define the findFood function
 function findFood() {
     const cravings = [];
     
@@ -6,9 +13,6 @@ function findFood() {
     if (document.getElementById('savory').checked) cravings.push('savory');
     if (document.getElementById('spicy').checked) cravings.push('spicy');
     if (document.getElementById('salty').checked) cravings.push('salty');
-    
-    // Log the cravings array to ensure it's populated
-    console.log("Cravings selected: ", cravings);
     
     // Simulate food suggestions based on the selected cravings
     const foodSuggestions = {
@@ -20,7 +24,10 @@ function findFood() {
 
     const results = cravings.flatMap(craving => foodSuggestions[craving] || []);
 
-    // Redirect to results page with the suggestions as URL parameters
-    const suggestionsParam = encodeURIComponent(results.join(','));
-    window.location.href = `results.html?suggestions=${suggestionsParam}`;
+    // If we are redirecting to another page, you wouldn't call displaySuggestions here
+    // Instead, we pass the results through the URL parameters or localStorage (as discussed in the previous answers)
+    console.log("Food suggestions: ", results);
+
+    // For now, if you want to display on the same page:
+    displaySuggestions(results);  // Only call this if displaying on the current page
 }
