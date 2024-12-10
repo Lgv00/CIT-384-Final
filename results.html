@@ -9,11 +9,41 @@
 <body>
     <div class="container">
         <div class="results-container">
-            <h2>Food Suggestions:</h2>
-            <div id="food-suggestions"></div>
+            <h1>Food Suggestions</h1>
+            <div id="food-results">
+                <!-- Food suggestions will be displayed here -->
+            </div>
+            <button onclick="goBack()">Go Back</button>
         </div>
     </div>
 
-    <script src="results.js"></script>
+    <script>
+        // Function to get query parameter by name
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Function to display the food suggestions on the page
+        function displayResults() {
+            const resultsString = getQueryParameter('foodSuggestions');
+            if (resultsString) {
+                const results = decodeURIComponent(resultsString).split(',');
+
+                const foodResultsContainer = document.getElementById('food-results');
+                foodResultsContainer.innerHTML = `<h3>Here are your food suggestions:</h3><ul>${results.map(item => `<li>${item}</li>`).join('')}</ul>`;
+            } else {
+                document.getElementById('food-results').innerHTML = '<p>No suggestions found.</p>';
+            }
+        }
+
+        // Function to go back to the main page
+        function goBack() {
+            window.location.href = 'index.html';  // Navigate back to the home page
+        }
+
+        // Display the food suggestions when the page loads
+        window.onload = displayResults;
+    </script>
 </body>
 </html>
