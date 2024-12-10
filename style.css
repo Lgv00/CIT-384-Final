@@ -60,7 +60,7 @@ label {
 
 /* Ensuring that the welcome-container doesn't overlap with other areas */
 .welcome-container + .welcome-container {
-    background-color: transparent; /* Make the second container background transparent */
+    background-color: white; /* Make the second container background transparent */
     border: none;                  /* Remove the border */
     box-shadow: none;               /* Remove any shadow */
 }
