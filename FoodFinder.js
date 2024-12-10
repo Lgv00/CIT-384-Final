@@ -1,10 +1,3 @@
-// Define the displaySuggestions function first
-function displaySuggestions(results) {
-    const resultsContainer = document.getElementById('results');
-    resultsContainer.innerHTML = `<h3>Food Suggestions:</h3><ul>${results.map(item => `<li>${item}</li>`).join('')}</ul>`;
-}
-
-// Now define the findFood function
 function findFood() {
     const cravings = [];
     
@@ -22,9 +15,18 @@ function findFood() {
         salty: ['Pretzels', 'Chips', 'Popcorn'],
     };
 
+    // Aggregate results based on selected cravings
     const results = cravings.flatMap(craving => foodSuggestions[craving] || []);
 
+    // Debugging: Log cravings and results
+    console.log('Selected cravings:', cravings);
+    console.log('Food suggestions:', results);
+
     // Redirect to results.html with the food suggestions as a query parameter
-    const resultsString = encodeURIComponent(results.join(','));  // Convert the array to a comma-separated string
-    window.location.href = `results.html?foodSuggestions=${resultsString}`;
+    if (results.length > 0) {
+        const resultsString = encodeURIComponent(results.join(','));  // Convert the array to a comma-separated string
+        window.location.href = `results.html?foodSuggestions=${resultsString}`;
+    } else {
+        alert('No cravings selected. Please choose at least one option!');
+    }
 }
