@@ -70,6 +70,18 @@ label {
     margin: 20px auto;         /* Center it horizontally with some margin on top */
 }
 
+/* Styling for the craving section with white box */
+.cravings-section {
+    width: 90%;                /* Make the width 90% of the available space */
+    max-width: 800px;          /* Set a maximum width for larger screens */
+    background-color: #FFF;    /* White background */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* White border */
+    padding: 20px;             /* Padding around the content */
+    border-radius: 12px;       /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Optional shadow */
+    margin: 20px auto;         /* Center it horizontally with some margin on top */
+}
+
 /* Ensuring that the welcome-container doesn't overlap with other areas */
 .welcome-container + .welcome-container {
     background-color: white; /* Make the second container background transparent */
