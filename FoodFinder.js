@@ -23,7 +23,8 @@ function findFood() {
     };
 
     const results = cravings.flatMap(craving => foodSuggestions[craving] || []);
-    console.log('Food suggestions:', results);
 
-    // Call displaySuggestions to show the results
-    displaySuggestions(results);
+    // Redirect to results.html with the food suggestions as a query parameter
+    const resultsString = encodeURIComponent(results.join(','));  // Convert the array to a comma-separated string
+    window.location.href = `results.html?foodSuggestions=${resultsString}`;
+}
