@@ -18,12 +18,9 @@ function findFood() {
         salty: ['Pretzels', 'Chips', 'Popcorn'],
     };
 
-    // Check if any cravings are selected, and generate suggestions accordingly
     const results = cravings.flatMap(craving => foodSuggestions[craving] || []);
-    
-    // Log the results array to check if it is correctly populated
-    console.log("Food Suggestions: ", results);
-    
-    // Display the results
-    displaySuggestions(results);
+
+    // Redirect to results page with the suggestions as URL parameters
+    const suggestionsParam = encodeURIComponent(results.join(','));
+    window.location.href = `results.html?suggestions=${suggestionsParam}`;
 }
