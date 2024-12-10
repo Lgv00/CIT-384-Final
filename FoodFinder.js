@@ -23,11 +23,7 @@ function findFood() {
     };
 
     const results = cravings.flatMap(craving => foodSuggestions[craving] || []);
+    console.log('Food suggestions:', results);
 
-    // If we are redirecting to another page, you wouldn't call displaySuggestions here
-    // Instead, we pass the results through the URL parameters or localStorage (as discussed in the previous answers)
-    console.log("Food suggestions: ", results);
-
-    // For now, if you want to display on the same page:
-    displaySuggestions(results);  // Only call this if displaying on the current page
-}
+    // Call displaySuggestions to show the results
+    displaySuggestions(results);
