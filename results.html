@@ -26,13 +26,23 @@
 
         // Function to display the food suggestions on the page
         function displayResults() {
+            // Get the foodSuggestions from the query parameter
             const resultsString = getQueryParameter('foodSuggestions');
+
             if (resultsString) {
+                // Decode and split the results into an array
                 const results = decodeURIComponent(resultsString).split(',');
 
+                // Get the container where results will be displayed
                 const foodResultsContainer = document.getElementById('food-results');
-                foodResultsContainer.innerHTML = `<h3>Here are your food suggestions:</h3><ul>${results.map(item => `<li>${item}</li>`).join('')}</ul>`;
+
+                // Create a list of food items and display it
+                foodResultsContainer.innerHTML = `
+                    <h3>Here are your food suggestions:</h3>
+                    <ul>${results.map(item => `<li>${item}</li>`).join('')}</ul>
+                `;
             } else {
+                // If no results are passed, show a message
                 document.getElementById('food-results').innerHTML = '<p>No suggestions found.</p>';
             }
         }
