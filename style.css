@@ -28,6 +28,19 @@ body {
     margin: 0 auto;                            /* Center the container horizontally */
 }
 
+/* Craving section styles identical to the welcome-container */
+.cravings-section {
+    background-color: #FFF;                    /* White background */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Light white border */
+    padding: 20px;                             /* Padding around the content */
+    border-radius: 12px;                       /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+    text-align: center;                        /* Center the content */
+    width: 80%;                                /* Adjust width */
+    max-width: 600px;                          /* Limit the max width */
+    margin: 20px auto;                         /* Center the container horizontally */
+}
+
 .cravings {
     margin-top: 20px;
     text-align: center;
@@ -70,19 +83,6 @@ label {
     margin: 20px auto;         /* Center it horizontally with some margin on top */
 }
 
-/* Styling for the craving section with white box */
-.cravings-section {
-    width: 90%;                /* Ensure the width is responsive */
-    max-width: 800px;          /* Set a max width for larger screens */
-    background-color: #FFF;    /* White background */
-    border: 2px solid rgba(255, 255, 255, 0.5); /* Light white border */
-    padding: 20px;             /* Padding around the content */
-    border-radius: 12px;       /* Rounded corners for aesthetic effect */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
-    margin: 20px auto;         /* Center horizontally with margin */
-    text-align: left;          /* Left align the content inside the box */
-}
-
 /* Additional styling for text inside the cravings-section */
 .cravings-section h2 {
     margin-bottom: 20px;       /* Space between heading and checkboxes */
@@ -107,7 +107,6 @@ label {
 .cravings-section button:hover {
     background-color: #45a049;
 }
-
 
 /* Ensuring that the welcome-container doesn't overlap with other areas */
 .welcome-container + .welcome-container {
