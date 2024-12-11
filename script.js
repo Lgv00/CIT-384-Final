@@ -11,16 +11,16 @@ function showCravingFilters() {
         <h2>What are you craving today?</h2>
         <div>
             <label>
-                <input type="checkbox" id="sweet"> Sweet
+                <input type="checkbox" name="craving" value="sweet"> Sweet
             </label>
             <label>
-                <input type="checkbox" id="savory"> Savory
+                <input type="checkbox" name="craving" value="savory"> Savory
             </label>
             <label>
-                <input type="checkbox" id="spicy"> Spicy
+                <input type="checkbox" name="craving" value="spicy"> Spicy
             </label>
             <label>
-                <input type="checkbox" id="salty"> Salty
+                <input type="checkbox" name="craving" value="salty"> Salty
             </label>
         </div>
         <button onclick="findFood()">Find Food</button>
