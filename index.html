@@ -15,24 +15,24 @@
         </div>
     </div>
 
-    <!-- Craving filters section with white box -->
-    <div class="welcome-container cravings-section" style="display:none;" id="cravings-section">
+    <!-- Craving filters section with white box, initially hidden -->
+    <div class="welcome-container cravings-section" id="cravings-section" style="display:none;">
         <h2>What are you craving today?</h2>
         <div>
-        <label><input type="checkbox" name="craving" value="sweet"> Sweet</label>
-        <label><input type="checkbox" name="craving" value="savory"> Savory</label>
-        <label><input type="checkbox" name="craving" value="spicy"> Spicy</label>
-        <label><input type="checkbox" name="craving" value="salty"> Salty</label>
+            <label><input type="checkbox" name="craving" value="sweet"> Sweet</label>
+            <label><input type="checkbox" name="craving" value="savory"> Savory</label>
+            <label><input type="checkbox" name="craving" value="spicy"> Spicy</label>
+            <label><input type="checkbox" name="craving" value="salty"> Salty</label>
 
-        <button onclick="findFood()">Submit</button>
+            <button onclick="findFood()">Submit</button>
+        </div>
+
+        <!-- Results container -->
+        <div id="results"></div>
     </div>
-
-    <!-- Results container -->
-    <div id="results"></div>
 
     <!-- Scripts -->
     <script src="FoodFinder.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
