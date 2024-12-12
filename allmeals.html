@@ -22,36 +22,25 @@
     <script>
         // Function to fetch and display all meals
         function fetchAllMeals() {
-            fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=a')  // Get all meals starting with "A"
-                .then(response => response.json())
-                .then(data => {
-                    const allMealsContainer = document.getElementById('all-meals-list');
-                    const meals = data.meals;
+    fetch('https://www.themealdb.com/api/json/v1/1/search.php')  // Fetch all meals
+        .then(response => response.json())
+        .then(data => {
+            const allMealsContainer = document.getElementById('all-meals-list');
+            const meals = data.meals;
 
-                    if (meals) {
-                        allMealsContainer.innerHTML = `
-                            <h3>All Meals (starting with "A"):</h3>
-                            <ul>
-                                ${meals.map(meal => `<li>${meal.strMeal}</li>`).join('')}
-                            </ul>
-                        `;
-                    } else {
-                        allMealsContainer.innerHTML = '<p>No meals found.</p>';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching all meals:', error);
-                    document.getElementById('all-meals-list').innerHTML = '<p>Error fetching meals. Please try again later.</p>';
-                });
-        }
-
-        // Function to go back to the results page
-        function goBack() {
-            window.location.href = 'results.html';  // Redirect back to results page
-        }
-
-        // Fetch all meals when the page loads
-        window.onload = fetchAllMeals;
-    </script>
-</body>
-</html>
+            if (meals) {
+                allMealsContainer.innerHTML = `
+                    <h3>All Meals:</h3>
+                    <ul>
+                        ${meals.map(meal => `<li>${meal.strMeal}</li>`).join('')}
+                    </ul>
+                `;
+            } else {
+                allMealsContainer.innerHTML = '<p>No meals found.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching all meals:', error);
+            document.getElementById('all-meals-list').innerHTML = '<p>Error fetching meals. Please try again later.</p>';
+        });
+}
