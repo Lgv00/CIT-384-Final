@@ -58,26 +58,21 @@
 
         // Function to search meal by name using the MealDB API
         function searchMeal() {
-            const mealName = document.getElementById('meal-search').value.trim().toLowerCase(); // Get the search term
+            const mealName = document.getElementById('meal-search').value.trim(); // Get the search term
 
             if (mealName) {
-                // Fetch all meals from the API
-                fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')  // Fetch all meals
+                // Fetch meals using the search term from the API
+                fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`)  // Use the search term in the API URL
                     .then(response => response.json())
                     .then(data => {
                         const mealInfoContainer = document.getElementById('meal-info');
                         const meals = data.meals;
 
-                        // Filter meals that contain the search term (case-insensitive)
-                        const filteredMeals = meals.filter(meal =>
-                            meal.strMeal.toLowerCase().includes(mealName)
-                        );
-
-                        if (filteredMeals.length > 0) {
+                        if (meals && meals.length > 0) {
                             mealInfoContainer.innerHTML = `
                                 <h3>Meals containing "${mealName}":</h3>
                                 <ul>
-                                    ${filteredMeals.map(meal => `
+                                    ${meals.map(meal => `
                                         <li>
                                             <a href="meal-details.html?id=${meal.idMeal}" target="_blank">
                                                 <h4>${meal.strMeal}</h4>
@@ -87,7 +82,7 @@
                                 </ul>
                             `;
                         } else {
-                            mealInfoContainer.innerHTML = '<p>No meals found containing that name.</p>';
+                            mealInfoContainer.innerHTML = `<p>No meals found containing the name "${mealName}".</p>`;
                         }
                     })
                     .catch(error => {
