@@ -25,9 +25,6 @@
             </div>
 
             <button onclick="goBack()">Go Back</button>
-
-            <!-- View all meals button -->
-            <button onclick="window.location.href='allmeals.html'">View All Meals</button>
         </div>
     </div>
 
@@ -61,28 +58,36 @@
 
         // Function to search meal by name using the MealDB API
         function searchMeal() {
-            const mealName = document.getElementById('meal-search').value;
+            const mealName = document.getElementById('meal-search').value.trim().toLowerCase(); // Get the search term
+
             if (mealName) {
-                // Fetch meal data from the API
-                fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`)
+                // Fetch all meals from the API
+                fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')  // Fetch all meals
                     .then(response => response.json())
                     .then(data => {
                         const mealInfoContainer = document.getElementById('meal-info');
-                        if (data.meals) {
-                            const meal = data.meals[0]; // Use the first result from the API
+                        const meals = data.meals;
+
+                        // Filter meals that contain the search term (case-insensitive)
+                        const filteredMeals = meals.filter(meal =>
+                            meal.strMeal.toLowerCase().includes(mealName)
+                        );
+
+                        if (filteredMeals.length > 0) {
                             mealInfoContainer.innerHTML = `
-                                <h3>${meal.strMeal}</h3>
-                                <img src="${meal.strMealThumb}" alt="${meal.strMeal}" style="width:200px;">
-                                <p><strong>Category:</strong> ${meal.strCategory}</p>
-                                <p><strong>Area:</strong> ${meal.strArea}</p>
-                                <p><strong>Instructions:</strong> ${meal.strInstructions}</p>
-                                <h4>Ingredients:</h4>
+                                <h3>Meals containing "${mealName}":</h3>
                                 <ul>
-                                    ${Object.keys(meal).filter(key => key.startsWith('strIngredient') && meal[key]).map(key => `<li>${meal[key]}</li>`).join('')}
+                                    ${filteredMeals.map(meal => `
+                                        <li>
+                                            <a href="meal-details.html?id=${meal.idMeal}" target="_blank">
+                                                <h4>${meal.strMeal}</h4>
+                                                <img src="${meal.strMealThumb}" alt="${meal.strMeal}" width="100">
+                                            </a>
+                                        </li>`).join('')}
                                 </ul>
                             `;
                         } else {
-                            mealInfoContainer.innerHTML = '<p>No meal found with that name.</p>';
+                            mealInfoContainer.innerHTML = '<p>No meals found containing that name.</p>';
                         }
                     })
                     .catch(error => {
