@@ -20,6 +20,9 @@
                 <button onclick="searchMeal()">Search Meal</button>
             </div>
 
+            <!-- View all meals button -->
+            <button onclick="viewAllMeals()">View All Meals</button>
+
             <div id="meal-info">
                 <!-- Meal information will be displayed here after searching -->
             </div>
@@ -37,36 +40,35 @@
 
         // Function to display the food suggestions on the page
         function displayResults() {
-    const resultsString = getQueryParameter('foodSuggestions');
-    const foodResultsContainer = document.getElementById('food-results');
+            const resultsString = getQueryParameter('foodSuggestions');
+            const foodResultsContainer = document.getElementById('food-results');
 
-    if (resultsString) {
-        const results = decodeURIComponent(resultsString).split(',');
+            if (resultsString) {
+                const results = decodeURIComponent(resultsString).split(',');
 
-        if (results.length > 0) {
-            foodResultsContainer.innerHTML = `
-                <h3>Here are your food suggestions:</h3>
-                <ul>${results.map(item => `<li>${item}</li>`).join('')}</ul>
-            `;
-        } else {
-            foodResultsContainer.innerHTML = '<p>No valid suggestions found.</p>';
+                if (results.length > 0) {
+                    foodResultsContainer.innerHTML = `
+                        <h3>Here are your food suggestions:</h3>
+                        <ul>${results.map(item => `<li>${item}</li>`).join('')}</ul>
+                    `;
+                } else {
+                    foodResultsContainer.innerHTML = '<p>No valid suggestions found.</p>';
+                }
+            } else {
+                foodResultsContainer.innerHTML = '<p>No suggestions found.</p>';
+            }
         }
-    } else {
-        foodResultsContainer.innerHTML = '<p>No suggestions found.</p>';
-    }
-}
 
         // Function to search meal by name using the MealDB API
         function searchMeal() {
             const mealName = document.getElementById('meal-search').value;
             if (mealName) {
-                // Fetch meal data from the API
                 fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`)
                     .then(response => response.json())
                     .then(data => {
                         const mealInfoContainer = document.getElementById('meal-info');
                         if (data.meals) {
-                            const meal = data.meals[0]; // Use the first result from the API
+                            const meal = data.meals[0];
                             mealInfoContainer.innerHTML = `
                                 <h3>${meal.strMeal}</h3>
                                 <img src="${meal.strMealThumb}" alt="${meal.strMeal}" style="width:200px;">
@@ -91,9 +93,34 @@
             }
         }
 
+        // Function to view all meals
+        function viewAllMeals() {
+            fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=a')  // Fetch meals starting with 'A'
+                .then(response => response.json())
+                .then(data => {
+                    const foodResultsContainer = document.getElementById('food-results');
+                    const meals = data.meals;
+
+                    if (meals) {
+                        foodResultsContainer.innerHTML = `
+                            <h3>All Meals (starting with "A"):</h3>
+                            <ul>
+                                ${meals.map(meal => `<li>${meal.strMeal}</li>`).join('')}
+                            </ul>
+                        `;
+                    } else {
+                        foodResultsContainer.innerHTML = '<p>No meals found.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching all meals:', error);
+                    document.getElementById('food-results').innerHTML = '<p>Error fetching meals. Please try again later.</p>';
+                });
+        }
+
         // Function to go back to the main page
         function goBack() {
-            window.location.href = 'index.html';  // Navigate back to the home page
+            window.location.href = 'index.html';
         }
 
         // Display the food suggestions when the page loads
