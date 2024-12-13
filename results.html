@@ -41,13 +41,18 @@
             const foodResultsContainer = document.getElementById('food-results');
 
             if (resultsString) {
-                const results = decodeURIComponent(resultsString).split(',');
+                const results = decodeURIComponent(resultsString);
+                const categorizedResults = JSON.parse(results);
 
-                if (results.length > 0) {
-                    foodResultsContainer.innerHTML = `
-                        <h3>Here are your food suggestions:</h3>
-                        <ul>${results.map(item => `<li>${item}</li>`).join('')}</ul>
-                    `;
+                if (Object.keys(categorizedResults).length > 0) {
+                    foodResultsContainer.innerHTML = '';
+
+                    for (const [craving, meals] of Object.entries(categorizedResults)) {
+                        foodResultsContainer.innerHTML += `
+                            <h3>${craving.charAt(0).toUpperCase() + craving.slice(1)}</h3>
+                            <ul>${meals.map(meal => `<li>${meal}</li>`).join('')}</ul>
+                        `;
+                    }
                 } else {
                     foodResultsContainer.innerHTML = '<p>No valid suggestions found.</p>';
                 }
