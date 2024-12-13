@@ -58,11 +58,11 @@
 
         // Function to search meal by name using the MealDB API
         function searchMeal() {
-            const mealName = document.getElementById('meal-search').value.trim(); // Get the search term
+            const mealName = document.getElementById('meal-search').value.trim();
 
             if (mealName) {
                 // Fetch meals using the search term from the API
-                fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`)  // Use the search term in the API URL
+                fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`)
                     .then(response => response.json())
                     .then(data => {
                         const mealInfoContainer = document.getElementById('meal-info');
@@ -84,6 +84,9 @@
                         } else {
                             mealInfoContainer.innerHTML = `<p>No meals found containing the name "${mealName}".</p>`;
                         }
+
+                        // Scroll to the top of the results container
+                        document.querySelector('.results-container').scrollTo({ top: 0, behavior: 'smooth' });
                     })
                     .catch(error => {
                         console.error('Error fetching meal data:', error);
@@ -96,7 +99,7 @@
 
         // Function to go back to the main page
         function goBack() {
-            window.location.href = 'index.html';  // Navigate back to the home page
+            window.location.href = 'index.html';
         }
 
         // Display the food suggestions when the page loads
