@@ -19,7 +19,7 @@ function findFood() {
         try {
             const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
             const data = await response.json();
-            return data.meals;
+            return data.meals.map(meal => meal.strMeal); // Only get meal names
         } catch (error) {
             console.error('Error fetching API data:', error);
             return [];
@@ -29,8 +29,8 @@ function findFood() {
     // Fetch and process API results
     fetchAPIResults().then(apiResults => {
         // Combine and shuffle predefined and API results
-        const allResults = [...predefinedResults, ...apiResults.map(meal => meal.strMeal)];
-        
+        const allResults = [...predefinedResults, ...apiResults];
+
         // Shuffle results
         for (let i = allResults.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
