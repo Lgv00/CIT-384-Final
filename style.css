@@ -126,3 +126,18 @@ label {
 div:empty {
     display: none;
 }
+
+/* Specific adjustments for meal-details container */
+.meal-details-container {
+    width: 80%;                /* Keep width smaller but ensure it fits properly */
+    max-width: 600px;          /* Set a maximum width for larger screens */
+    background-color: #FFF;    /* White background */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* White border */
+    padding: 20px;             /* Padding around the content */
+    border-radius: 12px;       /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Optional shadow */
+    margin-left: 10%;          /* Left alignment for meal details */
+    text-align: left;          /* Ensure text content aligns to the left */
+    overflow: auto;            /* Enable any necessary vertical scroll */
+    max-height: calc(100vh - 150px); /* Adjust height for better viewport control */
+}
